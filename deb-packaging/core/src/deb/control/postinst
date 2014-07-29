@@ -1,0 +1,4 @@
+#!/bin/sh
+# Licensed under Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
+#
+echo "To complete the installation foolow instructions in /usr/share/apache-syncope/README.md ."

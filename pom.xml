@@ -1406,6 +1406,9 @@ under the License.
             <exclude>.git/**</exclude>
             <exclude>.idea/**</exclude>
             <exclude>**/.*</exclude>
+            <exclude>overlays/**</exclude>
+            <exclude>**/deb/control/conffiles</exclude>
+            <exclude>**/deb/control/control</exclude>
           </excludes>
         </configuration>
         <executions>
@@ -1591,5 +1594,6 @@ under the License.
     <module>console</module>
     <module>standalone</module>
     <module>installer</module>
+    <module>deb-packaging</module>
   </modules>
 </project>
