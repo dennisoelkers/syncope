@@ -18,22 +18,26 @@ specific language governing permissions and limitations
 under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache.syncope.debian</groupId>
-        <artifactId>aggregator</artifactId>
+        <groupId>org.apache.syncope</groupId>
+        <artifactId>syncope</artifactId>
         <version>1.3.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>syncope-core</artifactId>
-    <packaging>war</packaging>
+    <groupId>org.apache.syncope</groupId>
+    <artifactId>debian</artifactId>
+    <packaging>deb</packaging>
 
-    <name>Apache Syncope :: Core :: Debian</name>
+    <name>Apache Syncope :: Debian Packager</name>
+
+    <description>Debian package for Apache Syncope</description>
 
     <properties>
+        <jdeb.version>1.3</jdeb.version>
         <org.connid.bundles.flatfile.version>1.2</org.connid.bundles.flatfile.version>
         <org.connid.bundles.ad.version>1.1.2</org.connid.bundles.ad.version>
         <org.connid.bundles.ldap.version>1.3.7</org.connid.bundles.ldap.version>
@@ -57,7 +61,6 @@ under the License.
             <artifactId>syncope-core</artifactId>
             <version>${project.version}</version>
             <type>war</type>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -68,12 +71,12 @@ under the License.
                 <filtering>true</filtering>
             </resource>
             <resource>
-                <directory>${project.basedir}/src/deb/tomcat7</directory>
+                <directory>${project.basedir}/src/core/tomcat7</directory>
                 <filtering>true</filtering>
                 <targetPath>${project.build.directory}/tomcat7</targetPath>
             </resource>
             <resource>
-                <directory>${project.basedir}/src/deb/etc</directory>
+                <directory>${project.basedir}/src/core/etc</directory>
                 <filtering>true</filtering>
                 <targetPath>${project.build.directory}/etc</targetPath>
             </resource>
@@ -125,29 +128,6 @@ under the License.
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>overlay-syncope-core</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>war</goal>
-                        </goals>
-                        <configuration>
-                            <overlays>
-                                <overlay>
-                                    <groupId>org.apache.syncope</groupId>
-                                    <artifactId>syncope-core</artifactId>
-                                </overlay>
-                            </overlays>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.vafer</groupId>
                 <artifactId>jdeb</artifactId>
                 <version>${jdeb.version}</version>
@@ -160,8 +140,8 @@ under the License.
                         </goals>
                         <configuration>
                             <verbose>true</verbose>
-                            <controlDir>${project.basedir}/src/deb/control</controlDir>
-                            <deb>${project.build.directory}/apache-${project.artifactId}-${project.version}.deb</deb>
+                            <controlDir>${project.basedir}/src/core/control</controlDir>
+                            <deb>${project.build.directory}/apache-syncope-core-${project.version}.deb</deb>
                             <dataSet>
                                 <!-- Template example -->
                                 <data>
@@ -198,7 +178,7 @@ under the License.
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>src/deb/utils</src>
+                                    <src>src/core/utils</src>
                                     <type>directory</type>
                                     <mapper>
                                         <type>perm</type>
@@ -244,5 +224,4 @@ under the License.
             </plugin>
         </plugins>
     </build>
-
 </project>
