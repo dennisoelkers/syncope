@@ -1,5 +1,0 @@
-#!/bin/sh
-# Licensed under Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
-#
-chmod 775 /var/log/apache-syncope
-echo "To finisih installation follow instructions in /usr/share/apache-syncope/README.console.md ."

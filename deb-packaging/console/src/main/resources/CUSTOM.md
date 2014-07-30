@@ -1,1 +1,0 @@
-All files in this folder will be on the web application classpath.

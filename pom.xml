@@ -1594,6 +1594,5 @@ under the License.
     <module>console</module>
     <module>standalone</module>
     <module>installer</module>
-    <module>deb-packaging</module>
   </modules>
 </project>
