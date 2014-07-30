@@ -37,7 +37,7 @@ under the License.
     <description>Debian package for Apache Syncope Web application</description>
 
     <properties>
-        <jdeb.version>1.2</jdeb.version>
+        <jdeb.version>1.3</jdeb.version>
     </properties>
 
     <modules>

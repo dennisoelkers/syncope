@@ -63,6 +63,14 @@ under the License.
                 <filtering>true</filtering>
                 <targetPath>${project.build.directory}/etc</targetPath>
             </resource>
+            <resource>
+                <directory>../..</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE</include>
+                    <include>NOTICE</include>
+                </includes>
+            </resource>
         </resources>
 
         <plugins>
@@ -74,13 +82,8 @@ under the License.
                 <configuration>
                     <overlays>
                         <overlay>
-                            <dependency>
-                                <groupId>org.apache.syncope</groupId>
-                                <artifactId>syncope-console</artifactId>
-                                <version>${project.version}</version>
-                                <type>war</type>
-                                <scope>runtime</scope>
-                            </dependency>
+                            <groupId>org.apache.syncope</groupId>
+                            <artifactId>syncope-console</artifactId>
                         </overlay>
                     </overlays>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -131,17 +134,6 @@ under the License.
                                     <mapper>
                                         <type>perm</type>
                                         <prefix>/etc/apache-syncope</prefix>
-                                        <user>tomcat7</user>
-                                        <group>tomcat7</group>
-                                    </mapper>
-                                </data>
-                                <data>
-                                    <src>README.md</src>
-                                    <type>file</type>
-                                    <dst>README.console.md</dst>
-                                    <mapper>
-                                        <type>perm</type>
-                                        <prefix>/usr/share/apache-syncope</prefix>
                                         <user>tomcat7</user>
                                         <group>tomcat7</group>
                                     </mapper>
